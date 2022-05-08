@@ -1,10 +1,16 @@
 import { Router } from "express";
 
-import { signIn, signUp } from "../controllers/authController.js";
+import {
+	getBankdata,
+	postBankdata,
+} from "../controllers/bankdataController.js";
+import { validateToken } from "../middlewares/tokenMiddleware.js";
 
 const bankdataRouter = Router();
 
-bankdataRouter.post("/sign-up", signUp);
-bankdataRouter.post("/sign-in", signIn);
+bankdataRouter.use(validateToken);
+
+bankdataRouter.post("/transition", postBankdata);
+bankdataRouter.get("/transition", getBankdata);
 
 export default bankdataRouter;

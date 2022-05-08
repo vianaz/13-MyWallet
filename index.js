@@ -9,7 +9,6 @@ const app = express();
 app.use(cors());
 app.use(json());
 dotenv.config();
-
 app.use(authRouter);
 app.use(bankdataRouter);
 
