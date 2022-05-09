@@ -8,8 +8,13 @@ const day = dayjs().locale("pt-br").format("DD/MM");
 export async function getBankdata(req, res) {
 	const { _id } = res.locals.user;
 	try {
-		const bankdata = await db.collection("bankdata").find({ UserId: _id }).toArray();
-		res.status(200).send(bankdata);
+		const bankdata = await db
+			.collection("bankdata")
+			.find({ UserId: _id })
+			.toArray();
+		const user = await db.collection("users").findOne({ _id: _id });
+
+		res.status(200).send({ bankdata, user });
 	} catch (error) {
 		res.status(500).send("Error creating data.");
 	}

@@ -5,11 +5,14 @@ import dotenv from "dotenv";
 import authRouter from "./routes/authRouter.js";
 import bankdataRouter from "./routes/bankdataRouter.js";
 
+dotenv.config();
+
 const app = express();
 app.use(cors());
 app.use(json());
-dotenv.config();
+
 app.use(authRouter);
+
 app.use(bankdataRouter);
 
 const port = process.env.PORT;
